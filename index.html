@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UAE Golden Visa · Eligibility Check</title>
+<meta name="description" content="Check if you qualify for the UAE Golden Visa in 2 minutes. تحقق من أهليتك للإقامة الذهبية في الإمارات.">
+<meta property="og:title" content="UAE Golden Visa · الإقامة الذهبية">
+<meta property="og:description" content="Check if you qualify in 2 minutes · تحقق من أهليتك خلال دقيقتين">
+<meta name="theme-color" content="#F7F4EE">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%23A8812F'/%3E%3Ctext x='16' y='22' font-size='17' text-anchor='middle' fill='white'%3E%E2%98%85%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F7F4EE; --card:#FFFFFF; --ink:#1C1A17; --muted:#6F685E; --line:#E6E0D5;
+    --gold:#A8812F; --gold-soft:#F4ECDB; --err:#B3261E;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);color:var(--ink);font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  body{min-height:100vh;display:flex;justify-content:center;padding:28px 16px 40px}
+  .wrap{width:100%;max-width:520px}
+  .brand{display:flex;align-items:center;gap:10px;margin-bottom:22px;color:var(--muted);font-size:13px;font-weight:500}
+  .brand .dot{width:28px;height:28px;border-radius:50%;background:var(--gold);display:grid;place-items:center;color:#fff;font-size:14px}
+  .bar{height:4px;background:var(--line);border-radius:4px;overflow:hidden;margin-bottom:26px}
+  .bar i{display:block;height:100%;width:0;background:var(--gold);transition:width .35s ease}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px 22px}
+  .step{display:none;animation:in .3s ease}
+  .step.on{display:block}
+  @keyframes in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  h1{font-size:22px;line-height:1.4;font-weight:700;margin-bottom:6px}
+  .sub{color:var(--muted);font-size:14px;line-height:1.6;margin-bottom:6px}
+  label.l,.q{display:block;font-size:14px;font-weight:600;margin:20px 0 8px;line-height:1.5}
+  label.l small{font-weight:400;color:var(--muted)}
+  .grp{font-size:12px;font-weight:600;color:var(--gold);letter-spacing:.02em;margin:20px 0 8px}
+  input[type=text],input[type=tel],input[type=url],select{
+    width:100%;font:inherit;font-size:16px;padding:13px 14px;border:1.5px solid var(--line);border-radius:12px;background:#fff;color:var(--ink);outline:none;transition:border-color .2s}
+  input:focus,select:focus{border-color:var(--gold)}
+  .phone{display:flex;gap:8px;direction:ltr}
+  .phone select{width:120px;flex:none}
+  .phone input{flex:1;min-width:0}
+  .opts{display:grid;gap:8px}
+  .opts.two{grid-template-columns:1fr 1fr}
+  .opts.list{gap:10px;margin-top:16px}
+  .opt{display:flex;align-items:center;gap:12px;width:100%;text-align:start;font:inherit;font-size:15px;font-weight:500;color:var(--ink);
+    background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;transition:border-color .15s,background .15s}
+  .opt:hover{border-color:#CDBF9F}
+  .opt.sel{border-color:var(--gold);background:var(--gold-soft)}
+  .opt .ic{font-size:18px;width:22px;text-align:center;flex:none}
+  .opt .tx{flex:1;line-height:1.4}
+  .opt .bx{width:20px;height:20px;border:1.5px solid #C9C1B2;border-radius:6px;flex:none;display:grid;place-items:center;font-size:13px;color:#fff}
+  .opt.sel .bx{background:var(--gold);border-color:var(--gold)}
+  .opt.sel .bx::after{content:"✓"}
+  .fld{padding:11px 10px;font-size:13.5px;gap:8px;min-height:58px}
+  .wide{grid-column:1/-1}
+  .lang{justify-content:center;text-align:center;padding:18px 12px;font-size:17px;font-weight:600}
+  .lang small{display:block;font-size:12.5px;font-weight:400;color:var(--muted);margin-top:3px}
+  .lp{text-align:center}
+  .foot div+div{margin-top:4px}
+  .lp h1 span,.lp .sub span{display:block}
+  .lp .sub{margin-bottom:22px}
+  .lp .sub span+span{margin-top:4px}
+  .chip{justify-content:center;padding:11px 8px;font-size:14px;text-align:center}
+  .otherBox{display:none;margin-top:10px}
+  .otherBox.on{display:block}
+  .nav{display:flex;gap:10px;margin-top:26px}
+  .btn{flex:1;font:inherit;font-size:16px;font-weight:600;border:none;border-radius:12px;padding:14px;cursor:pointer;background:var(--ink);color:#fff;transition:opacity .2s}
+  .btn:disabled{opacity:.35;cursor:not-allowed}
+  .btn.ghost{flex:none;background:transparent;color:var(--muted);border:1.5px solid var(--line);padding:14px 18px}
+  .err{color:var(--err);font-size:13px;margin-top:8px;min-height:18px}
+  input.hp{position:fixed;top:0;left:0;width:1px;height:1px;padding:0;border:0;overflow:hidden;clip:rect(0 0 0 0);opacity:0;pointer-events:none}
+  .done{text-align:center;padding:12px 0}
+  .done .big{width:64px;height:64px;border-radius:50%;background:var(--gold-soft);color:var(--gold);display:grid;place-items:center;font-size:30px;margin:0 auto 18px}
+  .foot{text-align:center;color:var(--muted);font-size:12px;margin-top:18px;line-height:1.6}
+  .spin{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:sp .7s linear infinite;vertical-align:-3px}
+  @keyframes sp{to{transform:rotate(360deg)}}
+  @media (max-width:360px){.opts.two.fields{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand"><span class="dot">★</span><span id="brandTx"></span></div>
+  <div class="bar"><i id="bar"></i></div>
+
+  <div class="card">
+    <!-- 0: language -->
+    <section class="step on lp" data-step="0">
+      <h1><span dir="ltr" lang="en">Choose your language</span><span dir="rtl" lang="ar">اختر لغتك</span></h1>
+      <p class="sub"><span dir="ltr" lang="en">Check if you qualify for the UAE Golden Visa. It takes about 2 minutes.</span><span dir="rtl" lang="ar">تحقق إذا كنت مؤهل للإقامة الذهبية في الإمارات، بياخد دقيقتين تقريباً.</span></p>
+      <div class="opts two">
+        <button class="opt lang" type="button" lang="en" dir="ltr" onclick="setLang('en')"><span class="tx">English<small>Continue in English</small></span></button>
+        <button class="opt lang" type="button" lang="ar" dir="rtl" onclick="setLang('ar')"><span class="tx">العربية<small>أكمل بالعربية</small></span></button>
+      </div>
+    </section>
+
+    <!-- 1: field -->
+    <section class="step" data-step="1">
+      <h1 data-t="fieldH"></h1>
+      <p class="sub" data-t="fieldP"></p>
+      <div id="fieldBox"></div>
+      <div class="otherBox" id="otherBox">
+        <label class="l" for="otherText" data-t="otherQ"></label>
+        <input id="otherText" type="text" maxlength="120" oninput="check()">
+      </div>
+      <div class="nav"><button class="btn ghost" type="button" onclick="go(-1)" data-t="back"></button><button class="btn" id="next1" type="button" onclick="go(1)" data-t="next" disabled></button></div>
+    </section>
+
+    <!-- 2: details for the chosen field -->
+    <section class="step" data-step="2">
+      <h1 id="detH"></h1>
+      <p class="sub" data-t="detP"></p>
+      <div id="detailBox"></div>
+      <div class="nav"><button class="btn ghost" type="button" onclick="go(-1)" data-t="back"></button><button class="btn" id="next2" type="button" onclick="go(1)" data-t="next" disabled></button></div>
+    </section>
+
+    <!-- 3: proofs (multi-select) -->
+    <section class="step" data-step="3">
+      <h1 data-t="proofH"></h1>
+      <p class="sub" data-t="proofP"></p>
+      <div id="proofBox"></div>
+      <div id="linkWrap">
+        <label class="l" for="link"><span id="linkLabel"></span> <small data-t="optional"></small></label>
+        <input id="link" type="url" inputmode="url" maxlength="300" placeholder="instagram.com/… · youtube.com/… · linkedin.com/…" style="direction:ltr">
+      </div>
+      <div class="nav"><button class="btn ghost" type="button" onclick="go(-1)" data-t="back"></button><button class="btn" id="next3" type="button" onclick="go(1)" data-t="next" disabled></button></div>
+    </section>
+
+    <!-- 4: contact + submit -->
+    <section class="step" data-step="4">
+      <h1 data-t="contactH"></h1>
+      <p class="sub" data-t="contactP"></p>
+      <label class="l" for="name" data-t="name"></label>
+      <input id="name" type="text" autocomplete="name" maxlength="100" oninput="check()">
+      <label class="l" for="phone" data-t="phone"></label>
+      <div class="phone">
+        <select id="code" onchange="check()"></select>
+        <input id="phone" type="tel" inputmode="tel" autocomplete="tel-national" maxlength="20" placeholder="50 123 4567" oninput="check()">
+      </div>
+      <input class="hp" id="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="err" id="err4"></div>
+      <div class="nav"><button class="btn ghost" type="button" onclick="go(-1)" data-t="back"></button><button class="btn" id="send" type="button" onclick="send()" disabled><span data-t="send"></span></button></div>
+    </section>
+
+    <!-- 5: done -->
+    <section class="step" data-step="5">
+      <div class="done">
+        <div class="big">✓</div>
+        <h1 data-t="doneH"></h1>
+        <p class="sub" data-t="doneP"></p>
+      </div>
+    </section>
+  </div>
+  <p class="foot" id="foot"></p>
+</div>
+
+<script>
+const ENDPOINT = 'https://script.google.com/macros/s/AKfycbzC_EwdgivBA-cTigk8sKRpFDKfFqNnLqWhIkV9lo47AIky5DRlXrx_NCP8N2d60rAX/exec';
+
+/* ===== Structure: fields, routes, questions, proofs ===== */
+const GROUPS = [
+  {k:'arts',  items:['singer','musician','composer','visual','photographer','film','performer','writer','designer']},
+  {k:'media', items:['creator','gaming']},
+  {k:'sport', items:['athlete']},
+  {k:'pro',   items:['doctor','engineer','it','lawyer','teacher','executive','scientist']},
+  {k:'biz',   items:['business','property']},
+  {k:'edu',   items:['student']}
+];
+const ICONS = {singer:'🎤',musician:'🎻',composer:'🎼',visual:'🎨',photographer:'📷',film:'🎬',performer:'🎭',writer:'✍️',designer:'📐',
+  creator:'📱',gaming:'🎮',athlete:'🏅',doctor:'🩺',engineer:'👷',it:'💻',lawyer:'⚖️',teacher:'📚',executive:'💼',scientist:'🔬',
+  business:'🏢',property:'🏠',student:'🎓',other:'✏️'};
+const ROUTE = {singer:'creative',musician:'creative',composer:'creative',visual:'creative',photographer:'creative',film:'creative',
+  performer:'creative',writer:'creative',designer:'creative',gaming:'creative',creator:'creator',athlete:'sports',
+  doctor:'pro',engineer:'pro',it:'pro',lawyer:'pro',teacher:'pro',executive:'pro',scientist:'pro',
+  business:'business',property:'business',student:'student',other:'other'};
+
+// Questions on the details page. only = fields that see it; showIf = depends on another answer
+const QDEF = {
+  awards:['a0','a1','a2_3','a4'], events:['e0','e1_5','e6_20','e20'], works:['w0','w1_5','w6_20','w20'], level:['local','regional','intl'],
+  platform:['instagram','tiktok','youtube','snapchat','x','podcast'], followers:['lt10k','k10_100','k100_1m','m1'], brands:['b0','b1_5','b6_20','b20'],
+  slevel:['club','national','natteam','intl'], titles:['t0','t1','t2_5','t6'], status:['active','retired'],
+  work:['employed','own','outside'], salary:['lt15','s15_30','gte30'], degree:['diploma','bachelor','master','phd'], license:['yes','no'], research:['r0','r1_10','r10'],
+  revenue:['nocompany','lt1m','m1_2','gt2m'], property:['noprop','lt2m','gte2m'],
+  stage:['school','uni'], sgrade:['g95','glt95'], gpa:['gpa38','gpa35','gpalt'], grad:['recent','older','studying'], uniloc:['uae','abroad'],
+  years:['lt3','y3_5','y5_10','gt10'], residence:['dubai','abudhabi','other_emirate','outside']
+};
+const ROUTES = {
+  creative:{qs:[{k:'awards'},{k:'events'},{k:'works'},{k:'level'},{k:'years'},{k:'residence'}],
+            proofs:['award_cert','event_docs','press','membership','published','recommend'], link:'creative'},
+  creator: {qs:[{k:'platform'},{k:'followers'},{k:'awards'},{k:'brands'},{k:'years'},{k:'residence'}],
+            proofs:['award_cert','brand_contracts','press','analytics','media_licence'], link:'creator'},
+  sports:  {qs:[{k:'slevel'},{k:'titles'},{k:'status'},{k:'years'},{k:'residence'}],
+            proofs:['medal_cert','fed_letter','natteam_letter','ranking','press'], link:'sports'},
+  pro:     {qs:[{k:'work'},{k:'salary'},{k:'degree'},{k:'license',only:['doctor']},{k:'research',only:['scientist']},{k:'years'},{k:'residence'}],
+            proofs:['contract','salary_cert','bank6','degree_cert','license_doc']},
+  business:{qs:[{k:'revenue'},{k:'property'},{k:'residence'}],
+            proofs:['trade_licence','audited','bank6','title_deed']},
+  student: {qs:[{k:'stage'},{k:'sgrade',showIf:['stage','school']},{k:'gpa',showIf:['stage','uni']},{k:'grad',showIf:['stage','uni']},{k:'uniloc',showIf:['stage','uni']},{k:'residence'}],
+            proofs:['certificate','transcript','equivalency','school_rec']},
+  other:   {qs:[{k:'work'},{k:'years'},{k:'residence'}],
+            proofs:['award_cert','press','contract','salary_cert','degree_cert','trade_licence','title_deed'], link:'other'}
+};
+
+/* ===== All visible text, per language ===== */
+const T = {
+  en:{
+    brand:'UAE Golden Visa · Eligibility check', back:'Back', next:'Continue', send:'Submit', optional:'(optional)', other:'Other',
+    fieldH:'What is your field?', fieldP:'Choose the one closest to your main work.', otherQ:'Write your field',
+    groups:{arts:'Arts, music & culture',media:'Content, media & gaming',sport:'Sports',pro:'Professions',biz:'Business & investment',edu:'Students'},
+    fields:{singer:'Singer',musician:'Musician',composer:'Composer / music producer',visual:'Visual artist / calligrapher',photographer:'Photographer',
+      film:'Filmmaker / director',performer:'Actor / dancer',writer:'Writer / poet',designer:'Designer (fashion, graphic, interior)',
+      creator:'Content creator / influencer / podcaster',gaming:'Gaming & esports',athlete:'Professional athlete',
+      doctor:'Doctor / healthcare',engineer:'Engineer',it:'IT / software / computer science',lawyer:'Lawyer / legal counsel',
+      teacher:'Teacher / academic',executive:'Manager / executive',scientist:'Scientist / researcher',
+      business:'Business owner / entrepreneur',property:'Property investor',student:'Outstanding student / graduate',other:'Other (write it)'},
+    detH:{creative:'Tell us about your work',creator:'Tell us about your content',sports:'Tell us about your sporting career',pro:'Your work and qualifications',
+      business:'Your business and investments',student:'Your studies',other:'Tell us a bit more'},
+    detP:'Pick the closest answer. There are no wrong answers.',
+    q:{
+      awards:['How many awards or award nominations do you have?',{a0:'None',a1:'1',a2_3:'2 – 3',a4:'4 or more'}],
+      events:['How many known festivals, concerts or exhibitions have you taken part in?',{e0:'None',e1_5:'1 – 5',e6_20:'6 – 20',e20:'More than 20'}],
+      works:['How many published works do you have? (songs, albums, exhibitions, books, films)',{w0:'None',w1_5:'1 – 5',w6_20:'6 – 20',w20:'More than 20'}],
+      level:['The highest level your work has reached',{local:'Local',regional:'Arab / regional',intl:'International'}],
+      platform:['Your main platform',{instagram:'Instagram',tiktok:'TikTok',youtube:'YouTube',snapchat:'Snapchat',x:'X',podcast:'Podcast'}],
+      followers:['Followers on your biggest account',{lt10k:'Under 10K',k10_100:'10K – 100K',k100_1m:'100K – 1M',m1:'1M or more'}],
+      brands:['How many paid brand collaborations have you done?',{b0:'None',b1_5:'1 – 5',b6_20:'6 – 20',b20:'More than 20'}],
+      slevel:['The highest level you competed at',{club:'Local clubs',national:'National championships',natteam:'National team',intl:'International / continental'}],
+      titles:['How many official medals or titles do you have?',{t0:'None',t1:'1',t2_5:'2 – 5',t6:'6 or more'}],
+      status:['Your current status',{active:'Still competing',retired:'Retired'}],
+      work:['Your current status',{employed:'Employed in the UAE',own:'Own business in the UAE',outside:'Working outside the UAE'}],
+      salary:['Basic monthly salary (without allowances)',{lt15:'Under AED 15,000',s15_30:'AED 15,000 – 30,000',gte30:'AED 30,000 or more'}],
+      degree:['Highest degree',{diploma:'Diploma or less',bachelor:'Bachelor’s',master:'Master’s',phd:'PhD'}],
+      license:['Do you have a UAE practising licence (DHA / DoH / MOHAP)?',{yes:'Yes',no:'No'}],
+      research:['How many published research papers do you have?',{r0:'None',r1_10:'1 – 10',r10:'More than 10'}],
+      revenue:['Annual revenue of your UAE company',{nocompany:'No company',lt1m:'Under AED 1M',m1_2:'AED 1M – 2M',gt2m:'Over AED 2M'}],
+      property:['Value of your UAE property',{noprop:'No property',lt2m:'Under AED 2M',gte2m:'AED 2M or more'}],
+      stage:['Your study level',{school:'High school',uni:'University'}],
+      sgrade:['Your high school grade',{g95:'95% or higher',glt95:'Below 95%'}],
+      gpa:['Your university GPA',{gpa38:'3.8 or higher',gpa35:'3.5 – 3.8',gpalt:'Below 3.5'}],
+      grad:['When did you graduate?',{recent:'In the last 2 years',older:'More than 2 years ago',studying:'Still studying'}],
+      uniloc:['Where is your university?',{uae:'In the UAE',abroad:'Outside the UAE'}],
+      years:['Years of experience in your field',{lt3:'Less than 3',y3_5:'3 to 5',y5_10:'5 to 10',gt10:'More than 10'}],
+      residence:['Where do you live now?',{dubai:'UAE – Dubai',abudhabi:'UAE – Abu Dhabi',other_emirate:'UAE – other emirate',outside:'Outside the UAE'}]
+    },
+    proofH:'What can you prove?', proofP:'Tick every document you have or can get. You can choose more than one.',
+    proofs:{award_cert:'Award or nomination certificates',event_docs:'Invitations, posters or programmes from festivals and events',
+      press:'Media coverage (articles, interviews, TV)',membership:'Membership card or letter from a union or association',
+      published:'Published works (Spotify, YouTube, books, catalogues)',recommend:'Recommendation letters from known bodies or people',
+      brand_contracts:'Contracts or invoices from brand collaborations',analytics:'Account analytics screenshots (insights)',
+      media_licence:'Media licence or trade licence for your content',medal_cert:'Medal and title certificates',
+      fed_letter:'Letter from your sports federation',natteam_letter:'National team call-up or participation letter',
+      ranking:'Official ranking (national or international)',contract:'MOHRE employment contract',salary_cert:'Salary certificate',
+      bank6:'Bank statements for the last 6 months',degree_cert:'Attested university degree',license_doc:'Professional practising licence',
+      trade_licence:'Trade licence',audited:'Audited financial statements',title_deed:'Property title deed',
+      certificate:'Graduation certificate',transcript:'Transcript of grades',equivalency:'Ministry of Higher Education equivalency',
+      school_rec:'Recommendation from your school or university',none:'Nothing yet'},
+    linkL:{creative:'Link to your work',creator:'Link to your main account',sports:'Link about your achievements',other:'Link to your work or profile'},
+    contactH:'Last step', contactP:'Where can we reach you? We’ll review your answers and message you on WhatsApp.',
+    name:'Full name', phone:'WhatsApp number',
+    doneH:'Thank you!', doneP:'We received your details and will contact you on WhatsApp soon.',
+    foot:'Your answers are used only to assess your eligibility. Final approval is decided by UAE authorities.',
+    eName:'Please enter your name.', ePhone:'Please enter a valid WhatsApp number.', eSend:'Something went wrong. Please try again.'
+  },
+  ar:{
+    brand:'الإقامة الذهبية · فحص الأهلية', back:'رجوع', next:'التالي', send:'إرسال', optional:'(اختياري)', other:'غير ذلك',
+    fieldH:'شو مجالك؟', fieldP:'اختار الأقرب لشغلك الأساسي.', otherQ:'اكتب مجالك',
+    groups:{arts:'الفن والموسيقى والثقافة',media:'المحتوى والإعلام والألعاب',sport:'الرياضة',pro:'المهن',biz:'الأعمال والاستثمار',edu:'الطلاب'},
+    fields:{singer:'مغني / مغنية',musician:'عازف موسيقي',composer:'ملحن أو منتج موسيقي',visual:'فنان تشكيلي أو خطاط',photographer:'مصور',
+      film:'صانع أفلام أو مخرج',performer:'ممثل أو راقص',writer:'كاتب أو شاعر',designer:'مصمم (أزياء، جرافيك، داخلي)',
+      creator:'صانع محتوى، مؤثر أو بودكاستر',gaming:'صناعة الألعاب والرياضات الإلكترونية',athlete:'رياضي محترف',
+      doctor:'طبيب أو مهنة صحية',engineer:'مهندس',it:'برمجة وتقنية معلومات',lawyer:'محامي أو مستشار قانوني',
+      teacher:'معلم أو أكاديمي',executive:'مدير أو تنفيذي',scientist:'باحث أو عالم',
+      business:'صاحب شركة أو رائد أعمال',property:'مستثمر عقاري',student:'طالب أو خريج متفوق',other:'غير ذلك (اكتبه)'},
+    detH:{creative:'خبّرنا عن شغلك',creator:'خبّرنا عن محتواك',sports:'خبّرنا عن مسيرتك الرياضية',pro:'شغلك وشهادتك',
+      business:'شركتك واستثماراتك',student:'دراستك',other:'خبّرنا عنك أكتر'},
+    detP:'اختار الجواب الأقرب، ما في جواب غلط.',
+    q:{
+      awards:['كم جائزة أو ترشيح لجائزة عندك؟',{a0:'ولا وحدة',a1:'1',a2_3:'2 لـ 3',a4:'4 أو أكتر'}],
+      events:['بكم مهرجان أو حفل أو معرض معروف شاركت؟',{e0:'ولا واحد',e1_5:'1 لـ 5',e6_20:'6 لـ 20',e20:'أكتر من 20'}],
+      works:['كم عمل منشور عندك؟ (أغاني، ألبومات، معارض، كتب، أفلام)',{w0:'ولا واحد',w1_5:'1 لـ 5',w6_20:'6 لـ 20',w20:'أكتر من 20'}],
+      level:['أعلى مستوى وصله شغلك',{local:'محلي',regional:'عربي أو إقليمي',intl:'دولي'}],
+      platform:['منصتك الأساسية',{instagram:'Instagram',tiktok:'TikTok',youtube:'YouTube',snapchat:'Snapchat',x:'X',podcast:'بودكاست'}],
+      followers:['كم متابع على أكبر حساب عندك؟',{lt10k:'أقل من 10 آلاف',k10_100:'من 10 آلاف لـ 100 ألف',k100_1m:'من 100 ألف لمليون',m1:'مليون أو أكتر'}],
+      brands:['كم تعاون مدفوع مع علامات تجارية عملت؟',{b0:'ولا واحد',b1_5:'1 لـ 5',b6_20:'6 لـ 20',b20:'أكتر من 20'}],
+      slevel:['أعلى مستوى لعبت فيه',{club:'أندية محلية',national:'بطولات وطنية',natteam:'منتخب وطني',intl:'بطولات دولية أو قارية'}],
+      titles:['كم ميدالية أو لقب رسمي عندك؟',{t0:'ولا وحدة',t1:'1',t2_5:'2 لـ 5',t6:'6 أو أكتر'}],
+      status:['وضعك الحالي',{active:'لسا بلعب',retired:'معتزل'}],
+      work:['شو وضعك الحالي؟',{employed:'موظف بالإمارات',own:'صاحب عمل بالإمارات',outside:'شغال برا الإمارات'}],
+      salary:['الراتب الأساسي الشهري (بدون بدلات)',{lt15:'أقل من 15 ألف درهم',s15_30:'من 15 لـ 30 ألف درهم',gte30:'30 ألف درهم أو أكتر'}],
+      degree:['أعلى شهادة عندك',{diploma:'دبلوم أو أقل',bachelor:'بكالوريوس',master:'ماجستير',phd:'دكتوراه'}],
+      license:['عندك ترخيص مزاولة بالإمارات (DHA / DoH / MOHAP)؟',{yes:'إيه',no:'لا'}],
+      research:['كم بحث منشور عندك؟',{r0:'ولا واحد',r1_10:'1 لـ 10',r10:'أكتر من 10'}],
+      revenue:['الدخل السنوي لشركتك بالإمارات',{nocompany:'ما عندي شركة',lt1m:'أقل من مليون درهم',m1_2:'من مليون لـ 2 مليون درهم',gt2m:'أكتر من 2 مليون درهم'}],
+      property:['قيمة عقارك بالإمارات',{noprop:'ما عندي عقار',lt2m:'أقل من 2 مليون درهم',gte2m:'2 مليون درهم أو أكتر'}],
+      stage:['وين وصلت بدراستك؟',{school:'ثانوية',uni:'جامعة'}],
+      sgrade:['معدلك بالثانوية',{g95:'95% أو أعلى',glt95:'أقل من 95%'}],
+      gpa:['معدلك الجامعي',{gpa38:'3.8 أو أعلى',gpa35:'من 3.5 لـ 3.8',gpalt:'أقل من 3.5'}],
+      grad:['متى تخرجت؟',{recent:'خلال آخر سنتين',older:'من أكتر من سنتين',studying:'لسا عم أدرس'}],
+      uniloc:['وين جامعتك؟',{uae:'بالإمارات',abroad:'برا الإمارات'}],
+      years:['سنوات الخبرة بمجالك',{lt3:'أقل من 3 سنين',y3_5:'من 3 لـ 5',y5_10:'من 5 لـ 10',gt10:'أكتر من 10'}],
+      residence:['وين ساكن حالياً؟',{dubai:'الإمارات – دبي',abudhabi:'الإمارات – أبوظبي',other_emirate:'الإمارات – إمارة تانية',outside:'خارج الإمارات'}]
+    },
+    proofH:'شو عندك إثبات عليه؟', proofP:'علّم على كل الأوراق يلي عندك أو فيك تجيبها. فيك تختار أكتر من خيار.',
+    proofs:{award_cert:'شهادات الجوائز أو الترشيحات',event_docs:'دعوات أو بوسترات أو برامج المهرجانات والفعاليات',
+      press:'تغطية إعلامية (مقالات، مقابلات، تلفزيون)',membership:'بطاقة أو رسالة عضوية بنقابة أو جمعية',
+      published:'أعمال منشورة (Spotify، YouTube، كتب، كتالوجات)',recommend:'رسائل توصية من جهات أو أشخاص معروفين',
+      brand_contracts:'عقود أو فواتير تعاون مع علامات تجارية',analytics:'لقطات إحصائيات الحساب (Insights)',
+      media_licence:'رخصة إعلامية أو رخصة تجارية للمحتوى',medal_cert:'شهادات الميداليات والبطولات',
+      fed_letter:'رسالة من الاتحاد الرياضي',natteam_letter:'رسالة استدعاء أو مشاركة مع المنتخب',
+      ranking:'تصنيف رسمي (وطني أو دولي)',contract:'عقد عمل من وزارة الموارد البشرية',salary_cert:'شهادة راتب',
+      bank6:'كشف حساب بنكي آخر 6 أشهر',degree_cert:'شهادة جامعية مصدّقة',license_doc:'ترخيص مزاولة المهنة',
+      trade_licence:'رخصة تجارية',audited:'بيانات مالية مدققة',title_deed:'سند ملكية العقار',
+      certificate:'الشهادة الدراسية',transcript:'كشف العلامات',equivalency:'معادلة من وزارة التعليم العالي',
+      school_rec:'توصية من المدرسة أو الجامعة',none:'لسا ما عندي شي'},
+    linkL:{creative:'رابط لأعمالك',creator:'رابط حسابك الأساسي',sports:'رابط عن إنجازاتك',other:'رابط لشغلك أو حسابك'},
+    contactH:'آخر خطوة', contactP:'وين منتواصل معك؟ رح نراجع إجاباتك ونحكيك على واتساب.',
+    name:'الاسم الكامل', phone:'رقم الواتساب',
+    doneH:'شكراً إلك!', doneP:'وصلتنا معلوماتك، ورح نتواصل معك على واتساب قريباً.',
+    foot:'إجاباتك بتُستخدم فقط لتقييم أهليتك. الموافقة النهائية بتكون من الجهات الرسمية في الإمارات.',
+    eName:'اكتب اسمك لو سمحت.', ePhone:'اكتب رقم واتساب صحيح.', eSend:'صار خطأ، جرّب مرة تانية.'
+  }
+};
+const CODES = [['971','🇦🇪'],['962','🇯🇴'],['963','🇸🇾'],['961','🇱🇧'],['970','🇵🇸'],['20','🇪🇬'],['966','🇸🇦'],['964','🇮🇶'],['965','🇰🇼'],['974','🇶🇦'],['973','🇧🇭'],['968','🇴🇲'],['967','🇾🇪'],['249','🇸🇩'],['218','🇱🇾'],['216','🇹🇳'],['213','🇩🇿'],['212','🇲🇦'],['90','🇹🇷'],['98','🇮🇷'],['91','🇮🇳'],['92','🇵🇰'],['63','🇵🇭'],['44','🇬🇧'],['33','🇫🇷'],['49','🇩🇪'],['7','🇷🇺'],['1','🇺🇸']];
+
+/* ===== State + helpers ===== */
+const S = {lang:'ar', step:0, field:'', ans:{}, proofs:[]};
+const $ = id => document.getElementById(id);
+const route = () => ROUTE[S.field] || 'other';
+const t = () => T[S.lang];
+
+function visibleQs(){
+  return ROUTES[route()].qs.filter(q =>
+    (!q.only || q.only.includes(S.field)) && (!q.showIf || S.ans[q.showIf[0]] === q.showIf[1]));
+}
+function btn(attrs, inner, sel, cls){
+  return `<button type="button" class="opt${sel?' sel':''}${cls?' '+cls:''}" ${attrs} onclick="pick(this)">${inner}</button>`;
+}
+
+/* ===== Rendering ===== */
+const NEUTRAL = {brand:'UAE Golden Visa · الإقامة الذهبية',
+  foot:['Your answers are used only to assess your eligibility. Final approval is decided by UAE authorities.',
+        'إجاباتك بتُستخدم فقط لتقييم أهليتك. الموافقة النهائية بتكون من الجهات الرسمية في الإمارات.']};
+
+// Header and footer: both languages on the language page, chosen language after it
+function chrome(){
+  const f = $('foot');
+  if (S.step === 0){
+    document.documentElement.lang = 'en'; document.documentElement.dir = 'ltr';
+    $('brandTx').textContent = NEUTRAL.brand;
+    f.innerHTML = '';
+    NEUTRAL.foot.forEach((txt,i) => { const d = document.createElement('div'); d.textContent = txt; d.dir = i ? 'rtl' : 'ltr'; d.lang = i ? 'ar' : 'en'; f.appendChild(d); });
+  } else {
+    document.documentElement.lang = S.lang; document.documentElement.dir = S.lang === 'ar' ? 'rtl' : 'ltr';
+    $('brandTx').textContent = t().brand;
+    f.textContent = t().foot;
+  }
+}
+
+function setLang(l, stay){
+  S.lang = l;
+  document.documentElement.lang = l;
+  document.documentElement.dir = l === 'ar' ? 'rtl' : 'ltr';
+  document.querySelectorAll('[data-t]').forEach(e => { const v = t()[e.dataset.t]; if (typeof v === 'string') e.textContent = v; });
+  const code = $('code'), keep = code.value;
+  code.innerHTML = CODES.map(([c,f]) => `<option value="${c}">${f} +${c}</option>`).join('') + `<option value="">${t().other} (+…)</option>`;
+  code.value = keep || '971';
+  renderFields(); renderDetails(); renderProofs();
+  if (!stay) go(1); else chrome();
+}
+
+function renderFields(){
+  let h = '';
+  GROUPS.forEach(g => {
+    h += `<div class="grp">${t().groups[g.k]}</div><div class="opts two fields">`;
+    g.items.forEach((k,i) => {
+      const lastOdd = g.items.length % 2 === 1 && i === g.items.length - 1;
+      h += btn(`data-g="field" data-k="${k}"`, `<span class="ic">${ICONS[k]}</span><span class="tx">${t().fields[k]}</span>`, S.field===k, 'fld' + (lastOdd?' wide':''));
+    });
+    h += `</div>`;
+  });
+  h += `<div class="grp">${t().other}</div><div class="opts">` +
+       btn(`data-g="field" data-k="other"`, `<span class="ic">${ICONS.other}</span><span class="tx">${t().fields.other}</span>`, S.field==='other', 'fld') + `</div>`;
+  $('fieldBox').innerHTML = h;
+  $('otherBox').classList.toggle('on', S.field === 'other');
+}
+
+function renderDetails(){
+  if (!S.field) return;
+  $('detH').textContent = t().detH[route()];
+  let h = '';
+  visibleQs().forEach(q => {
+    const [label, choices] = t().q[q.k];
+    const keys = QDEF[q.k];
+    const cols = keys.length === 3 && keys.every(k => choices[k].length < 9) ? 'two' : (keys.length === 3 ? '' : 'two');
+    h += `<div class="q">${label}</div><div class="opts ${cols}">`;
+    keys.forEach((v,i) => {
+      const wide = cols === 'two' && keys.length % 2 === 1 && i === keys.length - 1 ? ' wide' : '';
+      h += btn(`data-g="q" data-q="${q.k}" data-k="${v}"`, `<span class="tx">${choices[v]}</span>`, S.ans[q.k]===v, 'chip' + wide);
+    });
+    h += `</div>`;
+  });
+  $('detailBox').innerHTML = h;
+}
+
+function renderProofs(){
+  if (!S.field) return;
+  const r = ROUTES[route()];
+  let h = `<div class="opts list">`;
+  [...r.proofs, 'none'].forEach(k => {
+    h += btn(`data-g="proof" data-k="${k}"`, `<span class="tx">${t().proofs[k]}</span><span class="bx"></span>`, S.proofs.includes(k));
+  });
+  $('proofBox').innerHTML = h + `</div>`;
+  $('linkWrap').style.display = r.link ? '' : 'none';
+  $('linkLabel').textContent = r.link ? t().linkL[r.link] : '';
+}
+
+/* ===== Interaction ===== */
+function pick(el){
+  const g = el.dataset.g, k = el.dataset.k;
+  if (g === 'field'){
+    if (S.field !== k){ S.ans = {}; S.proofs = []; }
+    S.field = k;
+    renderFields(); renderDetails(); renderProofs(); check();
+    if (k === 'other') setTimeout(() => $('otherText').focus(), 50);
+    else setTimeout(() => go(1), 220);
+    return;
+  }
+  if (g === 'q'){ S.ans[el.dataset.q] = k; renderDetails(); }
+  if (g === 'proof'){
+    if (k === 'none') S.proofs = S.proofs.includes('none') ? [] : ['none'];
+    else {
+      S.proofs = S.proofs.filter(x => x !== 'none');
+      S.proofs = S.proofs.includes(k) ? S.proofs.filter(x => x !== k) : [...S.proofs, k];
+    }
+    renderProofs();
+  }
+  check();
+}
+
+function phoneDigits(){
+  let p = $('phone').value.replace(/\D/g,''), c = $('code').value;
+  if (c) p = p.replace(/^0+/,'');
+  return c + p;
+}
+
+function check(){
+  $('next1').disabled = !S.field || (S.field === 'other' && !$('otherText').value.trim());
+  $('next2').disabled = !S.field || !visibleQs().every(q => S.ans[q.k]);
+  $('next3').disabled = S.proofs.length === 0;
+  const d = phoneDigits().length;
+  $('send').disabled = !($('name').value.trim() && d >= 8 && d <= 15);
+}
+
+function go(dir){
+  if (dir > 0 && S.step >= 1 && S.step <= 3 && $('next' + S.step).disabled) return;
+  S.step = Math.max(0, Math.min(5, S.step + dir));
+  document.querySelectorAll('.step').forEach(s => s.classList.toggle('on', +s.dataset.step === S.step));
+  $('bar').style.width = (S.step / 5 * 100) + '%';
+  chrome();
+  check();
+  window.scrollTo({top:0, behavior:'smooth'});
+  if (S.step === 4) setTimeout(() => $('name').focus(), 60);
+}
+
+function send(){
+  const b = $('send');
+  if (!$('name').value.trim()) { $('err4').textContent = t().eName; return; }
+  const d = phoneDigits().length;
+  if (d < 8 || d > 15) { $('err4').textContent = t().ePhone; return; }
+  $('err4').textContent = '';
+  b.disabled = true; b.innerHTML = '<span class="spin"></span>';
+  const ans = {}; visibleQs().forEach(q => ans[q.k] = S.ans[q.k]);
+  const data = {
+    lang:S.lang, field:S.field, otherText: S.field === 'other' ? $('otherText').value.trim() : '',
+    ans:ans, proofs:S.proofs.filter(x => x !== 'none'), link: ROUTES[route()].link ? $('link').value.trim() : '',
+    name:$('name').value.trim(), code:$('code').value, phone:$('phone').value, website:$('website').value
+  };
+  const fail = () => { b.disabled = false; b.textContent = t().send; $('err4').textContent = t().eSend; };
+  // Sent without Google cookies, so it works for visitors signed in to several Google accounts
+  fetch(ENDPOINT, {method:'POST', credentials:'omit', redirect:'follow',
+                   headers:{'Content-Type':'text/plain;charset=utf-8'}, body:JSON.stringify(data)})
+    .then(r => r.json())
+    .then(res => res && res.ok ? go(1) : fail())
+    .catch(fail);
+}
+
+setLang('en', true);
+</script>
+</body>
+</html>
