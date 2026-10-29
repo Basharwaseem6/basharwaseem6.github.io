@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Documents · المستندات</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#F7F4EE">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F7F4EE; --card:#FFFFFF; --ink:#1C1A17; --muted:#6F685E; --line:#E6E0D5;
+    --gold:#A8812F; --gold-soft:#F4ECDB; --err:#B3261E; --ok:#2E6B3A;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);color:var(--ink);font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  body{min-height:100vh;display:flex;justify-content:center;padding:28px 16px 48px}
+  .wrap{width:100%;max-width:520px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px 20px}
+  .step{display:none}
+  .step.on{display:block}
+  h1{font-size:21px;line-height:1.4;font-weight:700;margin-bottom:4px}
+  .sub{color:var(--muted);font-size:14px;line-height:1.6}
+  h2{font-size:13px;font-weight:600;color:var(--muted);margin:22px 0 4px}
+  label.l{display:block;font-size:14px;font-weight:600;margin:18px 0 7px}
+  label.l small{font-weight:400;color:var(--muted)}
+  input[type=tel],input[type=email],input[type=url]{
+    width:100%;font:inherit;font-size:16px;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);outline:none;direction:ltr}
+  select{font:inherit;font-size:16px;padding:12px 8px;border:1.5px solid var(--line);border-radius:10px;background:#fff;color:var(--ink)}
+  input:focus,select:focus{border-color:var(--gold);outline:none}
+  .bad{border-color:var(--err)!important}
+  .phone{display:flex;gap:8px;direction:ltr}
+  .phone select{width:112px;flex:none}
+  .phone input{flex:1;min-width:0}
+  .opts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .opt{font:inherit;font-size:14px;color:var(--ink);background:#fff;border:1.5px solid var(--line);border-radius:10px;padding:11px 8px;cursor:pointer;text-align:center}
+  .opt.sel{border-color:var(--gold);background:var(--gold-soft);font-weight:600}
+  .lp{text-align:center}
+  .lp span{display:block}
+  .lp .sub{margin:8px 0 20px}
+  .lang{padding:16px 8px;font-size:17px;font-weight:600}
+  /* documents */
+  .doc{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
+  .doc:last-child{border-bottom:none}
+  .doc .tx{flex:1;min-width:0}
+  .doc .nm{font-size:14.5px;font-weight:600}
+  .doc .nm b{color:var(--err);font-weight:600}
+  .doc .ds{font-size:12.5px;color:var(--muted);line-height:1.5;margin-top:1px}
+  .doc .fl{font-size:12.5px;margin-top:4px;line-height:1.6}
+  .doc .fl span{display:inline-flex;align-items:center;gap:4px;max-width:100%}
+  .doc .fl .fn{direction:ltr;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:190px;color:var(--ink)}
+  .doc .fl .ok{color:var(--ok)}
+  .doc .fl .er{color:var(--err)}
+  .doc .fl button{border:none;background:none;color:var(--muted);cursor:pointer;font-size:15px;line-height:1;padding:0 2px}
+  .doc.miss .nm{color:var(--err)}
+  .pick{flex:none;font:inherit;font-size:13px;font-weight:600;color:var(--gold);background:#fff;border:1.5px solid var(--gold);border-radius:9px;padding:7px 12px;cursor:pointer}
+  .doc.has .pick{color:var(--muted);border-color:var(--line)}
+  .tick{flex:none;width:22px;height:22px;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;font-size:12px;color:#fff}
+  .doc.has .tick{background:var(--ok);border-color:var(--ok)}
+  input[type=file]{display:none}
+  .check{display:flex;gap:10px;align-items:flex-start;margin-top:20px;font-size:13.5px;line-height:1.6;cursor:pointer}
+  .check input{width:18px;height:18px;margin-top:3px;accent-color:var(--gold);flex:none}
+  .btn{display:block;width:100%;font:inherit;font-size:16px;font-weight:600;border:none;border-radius:11px;padding:14px;cursor:pointer;background:var(--ink);color:#fff;margin-top:22px}
+  .btn:disabled{opacity:.4;cursor:not-allowed}
+  .back{display:block;margin:12px auto 0;background:none;border:none;font:inherit;font-size:14px;color:var(--muted);cursor:pointer}
+  .err{color:var(--err);font-size:13px;margin-top:12px;line-height:1.6}
+  input.hp{position:fixed;top:0;left:0;width:1px;height:1px;padding:0;border:0;overflow:hidden;clip:rect(0 0 0 0);opacity:0;pointer-events:none}
+  .done{text-align:center;padding:10px 0}
+  .done .big{width:56px;height:56px;border-radius:50%;background:var(--gold-soft);color:var(--gold);display:grid;place-items:center;font-size:26px;margin:0 auto 14px}
+  .ref{display:block;margin-top:10px;font-size:13px;color:var(--muted);direction:ltr}
+  .foot{text-align:center;color:var(--muted);font-size:12px;margin-top:16px;line-height:1.6}
+  .foot div+div{margin-top:3px}
+  .pv{text-align:center;font-size:12px;color:var(--muted);border:1px dashed var(--line);border-radius:10px;padding:6px 10px;margin-bottom:12px}
+  .spin{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:sp .7s linear infinite;vertical-align:-3px}
+  @keyframes sp{to{transform:rotate(360deg)}}
+  .opt:focus-visible,.btn:focus-visible,.pick:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="pv" id="pv" hidden></div>
+  <div class="card">
+    <!-- 0 language -->
+    <section class="step lp" data-step="8">
+      <p class="sub" style="margin:10px 0"><span dir="ltr">Checking your link…</span><span dir="rtl">عم نتأكد من الرابط…</span></p>
+    </section>
+    <section class="step lp" data-step="9">
+      <h1><span dir="ltr" lang="en">This link isn’t active</span><span dir="rtl" lang="ar">هالرابط مش فعّال</span></h1>
+      <p class="sub"><span dir="ltr" lang="en">Please use the personal link we sent you, or contact us for a new one.</span><span dir="rtl" lang="ar">استعمل الرابط الخاص يلي بعتناه إلك، أو تواصل معنا لنبعتلك رابط جديد.</span></p>
+    </section>
+    <section class="step lp" data-step="0">
+      <h1><span dir="ltr" lang="en">Upload your documents</span><span dir="rtl" lang="ar">ارفع مستنداتك</span></h1>
+      <p class="sub"><span dir="ltr" lang="en">Choose your language</span><span dir="rtl" lang="ar">اختر لغتك</span></p>
+      <div class="opts">
+        <button class="opt lang" type="button" lang="en" dir="ltr" onclick="setLang('en')">English</button>
+        <button class="opt lang" type="button" lang="ar" dir="rtl" onclick="setLang('ar')">العربية</button>
+      </div>
+    </section>
+
+    <!-- 1 a few questions -->
+    <section class="step" data-step="1">
+      <h1 data-t="s1h"></h1>
+      <p class="sub" data-t="s1p"></p>
+      <label class="l" for="phone" data-t="phone"></label>
+      <div class="phone"><select id="code"></select><input id="phone" type="tel" inputmode="tel" maxlength="20" placeholder="50 123 4567"></div>
+      <label class="l" for="email" data-t="email"></label>
+      <input id="email" type="email" autocomplete="email" maxlength="120">
+      <label class="l" data-t="live"></label>
+      <div class="opts" id="liveOpts"></div>
+      <label class="l" data-t="want"></label>
+      <div class="opts" id="wantOpts"></div>
+      <label class="l" data-t="visa"></label>
+      <div class="opts" id="visaOpts"></div>
+      <label class="l" for="link"><span data-t="link"></span> <small data-t="optional"></small></label>
+      <input id="link" type="url" inputmode="url" maxlength="300" placeholder="instagram.com/… · youtube.com/…">
+      <input class="hp" id="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="err" id="err1"></div>
+      <button class="btn" type="button" onclick="next1()" data-t="next"></button>
+      <button class="back" type="button" onclick="go(0)" data-t="back"></button>
+    </section>
+
+    <!-- 2 documents -->
+    <section class="step" data-step="2">
+      <h1 data-t="s2h"></h1>
+      <p class="sub" data-t="s2p"></p>
+      <h2 data-t="reqH"></h2>
+      <div id="reqDocs"></div>
+      <h2 data-t="evH"></h2>
+      <p class="sub" style="font-size:12.5px" data-t="evP"></p>
+      <div id="evDocs"></div>
+      <label class="check"><input type="checkbox" id="agree"><span data-t="agree"></span></label>
+      <div class="err" id="err2"></div>
+      <button class="btn" id="send" type="button" onclick="send()"><span data-t="send"></span></button>
+      <button class="back" type="button" onclick="go(1)" data-t="back"></button>
+    </section>
+
+    <!-- 3 done -->
+    <section class="step" data-step="3">
+      <div class="done">
+        <div class="big">✓</div>
+        <h1 data-t="doneH"></h1>
+        <p class="sub" data-t="doneP"></p>
+        <span class="ref" id="refNo"></span>
+      </div>
+    </section>
+  </div>
+  <p class="foot" id="foot"></p>
+</div>
+<input type="file" id="picker" multiple>
+
+<script>
+/* ===== Settings for this file type ===== */
+const ENDPOINT = 'https://script.google.com/macros/s/AKfycbzC_EwdgivBA-cTigk8sKRpFDKfFqNnLqWhIkV9lo47AIky5DRlXrx_NCP8N2d60rAX/exec';
+const TRACK = 'culture_arts';
+const MAX_MB = 10;
+const ACCEPT = '.pdf,.jpg,.jpeg,.png,.heic,.doc,.docx';
+
+// Required documents. ifVisa = only required when the person has a UAE residence visa
+const REQ = [
+  {k:'passport'}, {k:'photo', accept:'.jpg,.jpeg,.png,.heic'}, {k:'eid', ifVisa:true}, {k:'visa', ifVisa:true},
+  {k:'cv'}, {k:'portfolio'}
+];
+// Proof of achievements. At least one file overall
+const EV = [{k:'awards'}, {k:'events'}, {k:'press'}, {k:'members'}, {k:'letters'}, {k:'other'}];
+
+/* ===== Text ===== */
+const T = {
+  en:{
+    next:'Continue', back:'Back', send:'Submit', optional:'(optional)',
+    s1h:'A few questions', s1p:'Only what we can’t find in your documents.',
+    phone:'WhatsApp number', email:'Email',
+    live:'Where do you live now?', liveO:{dubai:'Dubai',abudhabi:'Abu Dhabi',other:'Another emirate',outside:'Outside the UAE'},
+    want:'Which emirate do you want your residency in?', wantO:{dubai:'Dubai',abudhabi:'Abu Dhabi',other:'Another emirate',unsure:'Not sure yet'},
+    visa:'Do you have a UAE residence visa now?', visaO:{yes:'Yes',no:'No'},
+    link:'Link to your work',
+    s2h:'Your documents', s2p:'PDF, JPG or PNG, up to 10 MB each. Clear colour scans.',
+    reqH:'Required', evH:'Proof of your achievements', evP:'Upload everything you have. At least one file.',
+    doc:{
+      passport:['Passport','Photo page, colour, valid 6+ months'],
+      photo:['Personal photo','White background'],
+      eid:['Emirates ID','Front and back'],
+      visa:['Residence visa','Current visa or e-visa'],
+      cv:['CV','Any format'],
+      portfolio:['Portfolio / work samples','One PDF or several files'],
+      awards:['Awards and nominations','Certificates, announcements'],
+      events:['Festivals, concerts, exhibitions','Posters, invitations, contracts, photos'],
+      press:['Media coverage','Articles, interviews, screenshots with date'],
+      members:['Memberships','Union or association cards or letters'],
+      letters:['Recommendation letters',''],
+      other:['Other','Anything that supports your file']
+    },
+    pick:'Upload', add:'Add',
+    agree:'I confirm these documents are genuine and belong to me.',
+    doneH:'Received, thank you', doneP:'We’ll review your documents and message you on WhatsApp if anything is missing.', refL:'Reference',
+    foot:'Your files are stored privately and used only for your application.',
+    e:{phone:'Write a valid WhatsApp number.', email:'Write a valid email.', live:'Choose where you live now.', want:'Choose the emirate you want.', visa:'Answer the residence visa question.',
+       req:'Still missing:', busy:'Wait for the uploads to finish.', ev:'Upload at least one proof of your achievements.', agree:'Tick the confirmation box.',
+       type:'File type not accepted', size:'Larger than 10 MB', up:'Upload failed, try again', send:'Something went wrong. Please try again.'},
+    up:{wait:'Uploading', ok:'Uploaded', pv:'Preview'}
+  },
+  ar:{
+    next:'التالي', back:'رجوع', send:'إرسال', optional:'(اختياري)',
+    s1h:'كم سؤال', s1p:'بس الشي يلي ما منقدر نعرفه من مستنداتك.',
+    phone:'رقم الواتساب', email:'الإيميل',
+    live:'وين ساكن حالياً؟', liveO:{dubai:'دبي',abudhabi:'أبوظبي',other:'إمارة تانية',outside:'خارج الإمارات'},
+    want:'بأي إمارة بدك تكون إقامتك؟', wantO:{dubai:'دبي',abudhabi:'أبوظبي',other:'إمارة تانية',unsure:'لسا مش متأكد'},
+    visa:'عندك إقامة إماراتية هلق؟', visaO:{yes:'إيه',no:'لا'},
+    link:'رابط لأعمالك',
+    s2h:'مستنداتك', s2p:'PDF أو JPG أو PNG، كل ملف لحد 10 ميغا. سكان ملوّن وواضح.',
+    reqH:'مطلوبة', evH:'إثباتات إنجازاتك', evP:'ارفع كل شي عندك. ملف واحد على الأقل.',
+    doc:{
+      passport:['الجواز','صفحة الصورة، ملوّن، صالح 6 أشهر أو أكتر'],
+      photo:['صورة شخصية','خلفية بيضا'],
+      eid:['الهوية الإماراتية','الوجهين'],
+      visa:['الإقامة','الإقامة الحالية أو الإلكترونية'],
+      cv:['السيرة الذاتية','بأي شكل'],
+      portfolio:['ملف الأعمال / نماذج','PDF واحد أو كذا ملف'],
+      awards:['الجوائز والترشيحات','شهادات، إعلانات'],
+      events:['مهرجانات، حفلات، معارض','بوسترات، دعوات، عقود، صور'],
+      press:['تغطية إعلامية','مقالات، مقابلات، لقطات شاشة فيها التاريخ'],
+      members:['عضويات','بطاقات أو رسائل نقابة أو جمعية'],
+      letters:['رسائل توصية',''],
+      other:['غير ذلك','أي شي بيدعم ملفك']
+    },
+    pick:'رفع', add:'إضافة',
+    agree:'بأكد إنه المستندات صحيحة وإلي.',
+    doneH:'وصلت، شكراً إلك', doneP:'رح نراجع مستنداتك ونحكيك على واتساب إذا في شي ناقص.', refL:'رقم المرجع',
+    foot:'ملفاتك محفوظة بشكل خاص وبتُستخدم بس لطلبك.',
+    e:{phone:'اكتب رقم واتساب صحيح.', email:'اكتب إيميل صحيح.', live:'اختار وين ساكن حالياً.', want:'اختار الإمارة يلي بدك ياها.', visa:'جاوب على سؤال الإقامة.',
+       req:'لسا ناقص:', busy:'استنى لحتى يخلص الرفع.', ev:'ارفع إثبات واحد على الأقل لإنجازاتك.', agree:'علّم على مربع التأكيد.',
+       type:'نوع الملف مش مقبول', size:'أكبر من 10 ميغا', up:'ما انرفع، جرّب مرة تانية', send:'صار خطأ، جرّب مرة تانية.'},
+    up:{wait:'عم يرفع', ok:'انرفع', pv:'معاينة'}
+  }
+};
+const NEUTRAL_FOOT = ['Your files are stored privately and used only for your application.','ملفاتك محفوظة بشكل خاص وبتُستخدم بس لطلبك.'];
+const CODES = [['971','🇦🇪'],['962','🇯🇴'],['963','🇸🇾'],['961','🇱🇧'],['970','🇵🇸'],['20','🇪🇬'],['966','🇸🇦'],['964','🇮🇶'],['965','🇰🇼'],['974','🇶🇦'],['973','🇧🇭'],['968','🇴🇲'],['967','🇾🇪'],['249','🇸🇩'],['218','🇱🇾'],['216','🇹🇳'],['213','🇩🇿'],['212','🇲🇦'],['90','🇹🇷'],['98','🇮🇷'],['91','🇮🇳'],['92','🇵🇰'],['63','🇵🇭'],['44','🇬🇧'],['33','🇫🇷'],['49','🇩🇪'],['7','🇷🇺'],['1','🇺🇸']];
+
+/* ===== State ===== */
+const PREVIEW = !ENDPOINT;
+const CODE = (new URLSearchParams(location.search).get('c') || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+const SID = (Date.now().toString(36) + Math.random().toString(36).slice(2,6)).toUpperCase();
+const S = {lang:'en', step:0, live:'', want:'', visa:'', files:{}};
+let uid = 0, pickFor = null;
+const $ = id => document.getElementById(id);
+const t = () => T[S.lang];
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const ALL = REQ.concat(EV);
+const required = d => !d.ifVisa || S.visa === 'yes';
+
+function chrome(){
+  const f = $('foot');
+  if (S.step === 0 || S.step >= 8){
+    document.documentElement.lang = 'en'; document.documentElement.dir = 'ltr';
+    f.innerHTML = ''; NEUTRAL_FOOT.forEach((x,i) => { const d = document.createElement('div'); d.textContent = x; d.dir = i ? 'rtl' : 'ltr'; f.appendChild(d); });
+  } else {
+    document.documentElement.lang = S.lang; document.documentElement.dir = S.lang === 'ar' ? 'rtl' : 'ltr';
+    f.textContent = t().foot;
+  }
+  if (PREVIEW){ $('pv').hidden = false; $('pv').textContent = S.step === 0 ? 'Preview · معاينة' : (S.lang === 'ar' ? 'معاينة: الملفات ما بتنبعت' : 'Preview: files are not sent'); }
+}
+function go(n){
+  S.step = n;
+  document.querySelectorAll('.step').forEach(s => s.classList.toggle('on', +s.dataset.step === n));
+  chrome(); window.scrollTo({top:0, behavior:'smooth'});
+}
+function setLang(l){
+  S.lang = l;
+  document.querySelectorAll('[data-t]').forEach(e => { const v = t()[e.dataset.t]; if (typeof v === 'string') e.textContent = v; });
+  const code = $('code'), keep = code.value;
+  code.innerHTML = CODES.map(([c,f]) => `<option value="${c}">${f} +${c}</option>`).join('');
+  code.value = keep || '971';
+  renderChoices(); renderDocs(); go(1);
+}
+
+/* ===== Questions ===== */
+function chips(box, g, obj){
+  $(box).innerHTML = Object.entries(obj).map(([k,v]) => `<button type="button" class="opt${S[g]===k?' sel':''}" data-g="${g}" data-k="${k}" onclick="choose(this)">${esc(v)}</button>`).join('');
+}
+function renderChoices(){ chips('liveOpts','live',t().liveO); chips('wantOpts','want',t().wantO); chips('visaOpts','visa',t().visaO); }
+function choose(el){ S[el.dataset.g] = el.dataset.k; renderChoices(); renderDocs(); $('err1').textContent = ''; }
+function phoneDigits(){ return $('code').value + $('phone').value.replace(/\D/g,'').replace(/^0+/,''); }
+function next1(){
+  const e = t().e, errs = [];
+  const d = phoneDigits().length;
+  if (d < 9 || d > 15){ errs.push(e.phone); $('phone').classList.add('bad'); }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test($('email').value.trim())){ errs.push(e.email); $('email').classList.add('bad'); }
+  if (!S.live) errs.push(e.live);
+  if (!S.want) errs.push(e.want);
+  if (!S.visa) errs.push(e.visa);
+  $('err1').innerHTML = errs.map(esc).join('<br>');
+  if (!errs.length) go(2);
+}
+
+/* ===== Documents ===== */
+function row(d, isReq){
+  const [nm, ds] = t().doc[d.k];
+  const list = S.files[d.k] || [];
+  const has = list.some(f => f.state === 'ok');
+  const star = isReq && required(d) ? ' <b>*</b>' : '';
+  const items = list.map(f => {
+    const st = f.state === 'ok' ? `<span class="ok">✓ ${PREVIEW ? t().up.pv : t().up.ok}</span>`
+             : f.state === 'err' ? `<span class="er">${esc(f.msg)}</span>` : `<span>${t().up.wait} ${f.pct||0}%</span>`;
+    const x = f.state === 'up' ? '' : `<button type="button" aria-label="remove" onclick="removeFile('${d.k}',${f.id})">×</button>`;
+    return `<span><span class="fn">${esc(f.name)}</span> · ${st}${x}</span>`;
+  }).join('<br>');
+  if (isReq && d.ifVisa && S.visa !== 'yes') return '';
+  return `<div class="doc${has?' has':''}" id="d_${d.k}"><span class="tick">${has?'✓':''}</span>`+
+    `<div class="tx"><div class="nm">${esc(nm)}${star}</div>${ds?`<div class="ds">${esc(ds)}</div>`:''}${items?`<div class="fl">${items}</div>`:''}</div>`+
+    `<button class="pick" type="button" onclick="pickFile('${d.k}')">${list.length ? t().add : t().pick}</button></div>`;
+}
+function renderDocs(){
+  $('reqDocs').innerHTML = REQ.map(d => row(d, true)).join('');
+  $('evDocs').innerHTML = EV.map(d => row(d, false)).join('');
+}
+function pickFile(k){
+  pickFor = k; const d = ALL.find(x => x.k === k);
+  const p = $('picker'); p.accept = d.accept || ACCEPT; p.value = ''; p.click();
+}
+$('picker').addEventListener('change', e => { [...e.target.files].forEach(f => addFile(pickFor, f)); $('err2').textContent = ''; });
+function addFile(k, file){
+  const d = ALL.find(x => x.k === k);
+  const ext = (file.name.split('.').pop() || '').toLowerCase();
+  const ok = (d.accept || ACCEPT).split(',').map(x => x.replace('.','')).includes(ext);
+  const rec = {id:++uid, name:file.name, state:'up', pct:0};
+  (S.files[k] = S.files[k] || []).push(rec);
+  if (!ok){ rec.state = 'err'; rec.msg = t().e.type; return renderDocs(); }
+  if (file.size > MAX_MB * 1048576){ rec.state = 'err'; rec.msg = t().e.size; return renderDocs(); }
+  renderDocs(); upload(k, rec, file);
+}
+function removeFile(k, id){ S.files[k] = (S.files[k] || []).filter(f => f.id !== id); renderDocs(); }
+function upload(k, rec, file){
+  if (PREVIEW){
+    const iv = setInterval(() => { rec.pct = Math.min(100, rec.pct + 34); if (rec.pct >= 100){ clearInterval(iv); rec.state = 'ok'; } renderDocs(); }, 160);
+    return;
+  }
+  const r = new FileReader();
+  r.onload = () => {
+    const x = new XMLHttpRequest();
+    x.open('POST', ENDPOINT); x.withCredentials = false;
+    x.setRequestHeader('Content-Type','text/plain;charset=utf-8');
+    x.upload.onprogress = ev => { if (ev.lengthComputable){ rec.pct = Math.round(ev.loaded / ev.total * 95); renderDocs(); } };
+    x.onload = () => { let res = {}; try { res = JSON.parse(x.responseText); } catch(e){}
+      if (res.ok){ rec.state = 'ok'; rec.fileId = res.fileId; } else { rec.state = 'err'; rec.msg = t().e.up; } renderDocs(); };
+    x.onerror = () => { rec.state = 'err'; rec.msg = t().e.up; renderDocs(); };
+    x.send(JSON.stringify({action:'upload', c:CODE, track:TRACK, sid:SID, slot:k, name:file.name, type:file.type,
+      phone:phoneDigits(), data:String(r.result).split(',')[1], website:$('website').value}));
+  };
+  r.onerror = () => { rec.state = 'err'; rec.msg = t().e.up; renderDocs(); };
+  r.readAsDataURL(file);
+}
+const count = k => (S.files[k] || []).filter(f => f.state === 'ok').length;
+const busy = () => Object.values(S.files).flat().some(f => f.state === 'up');
+
+/* ===== Submit ===== */
+function send(){
+  const e = t().e, errs = [];
+  if (busy()) errs.push(e.busy);
+  const miss = REQ.filter(d => required(d) && !count(d.k));
+  REQ.forEach(d => { const el = $('d_'+d.k); if (el) el.classList.toggle('miss', required(d) && !count(d.k)); });
+  if (miss.length) errs.push(e.req + ' ' + miss.map(d => t().doc[d.k][0]).join(S.lang === 'ar' ? '، ' : ', '));
+  if (!EV.some(d => count(d.k))) errs.push(e.ev);
+  if (!$('agree').checked) errs.push(e.agree);
+  $('err2').innerHTML = errs.map(esc).join('<br>');
+  if (errs.length) return;
+  const b = $('send'); b.disabled = true; b.innerHTML = '<span class="spin"></span>';
+  const docs = {}; ALL.forEach(d => docs[d.k] = count(d.k));
+  const data = {action:'submit', c:CODE, track:TRACK, sid:SID, lang:S.lang, code:$('code').value, phone:$('phone').value,
+    email:$('email').value.trim(), live:S.live, want:S.want, visa:S.visa, link:$('link').value.trim(), docs:docs, website:$('website').value};
+  const done = () => { $('refNo').textContent = t().refL + ': ' + CODE; go(3); };
+  const fail = () => { b.disabled = false; b.textContent = t().send; $('err2').textContent = e.send; };
+  if (PREVIEW){ window.__last = data; setTimeout(done, 400); return; }
+  fetch(ENDPOINT, {method:'POST', credentials:'omit', redirect:'follow', headers:{'Content-Type':'text/plain;charset=utf-8'}, body:JSON.stringify(data)})
+    .then(r => r.json()).then(res => res && res.ok ? done() : fail()).catch(fail);
+}
+document.addEventListener('input', ev => ev.target.classList && ev.target.classList.remove('bad'));
+
+// Only people with a personal code can use the page
+function start(){
+  if (PREVIEW) return go(0);
+  if (CODE.length < 6) return go(9);
+  go(8);
+  fetch(ENDPOINT, {method:'POST', credentials:'omit', redirect:'follow', headers:{'Content-Type':'text/plain;charset=utf-8'},
+                   body:JSON.stringify({action:'check', c:CODE, track:TRACK})})
+    .then(r => r.json()).then(res => go(res && res.ok ? 0 : 9)).catch(() => go(9));
+}
+start();
+</script>
+</body>
+</html>
