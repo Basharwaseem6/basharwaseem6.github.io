@@ -339,10 +339,12 @@ function upload(k, rec, file){
     const x = new XMLHttpRequest();
     x.open('POST', ENDPOINT); x.withCredentials = false;
     x.setRequestHeader('Content-Type','text/plain;charset=utf-8');
-    x.upload.onprogress = ev => { if (ev.lengthComputable){ rec.pct = Math.round(ev.loaded / ev.total * 95); renderDocs(); } };
-    x.onload = () => { let res = {}; try { res = JSON.parse(x.responseText); } catch(e){}
+    // no x.upload listeners: they force a CORS preflight that Apps Script rejects
+    const est = Math.max(2500, file.size / 120);
+    const iv = setInterval(() => { rec.pct = Math.min(90, (rec.pct || 0) + Math.ceil(90 * 400 / est)); renderDocs(); }, 400);
+    x.onload = () => { clearInterval(iv); let res = {}; try { res = JSON.parse(x.responseText); } catch(e){}
       if (res.ok){ rec.state = 'ok'; rec.fileId = res.fileId; } else { rec.state = 'err'; rec.msg = t().e.up; } renderDocs(); };
-    x.onerror = () => { rec.state = 'err'; rec.msg = t().e.up; renderDocs(); };
+    x.onerror = () => { clearInterval(iv); rec.state = 'err'; rec.msg = t().e.up; renderDocs(); };
     x.send(JSON.stringify({action:'upload', c:CODE, track:TRACK, sid:SID, slot:k, name:file.name, type:file.type,
       phone:phoneDigits(), data:String(r.result).split(',')[1], website:$('website').value}));
   };
